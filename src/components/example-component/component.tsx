@@ -1,5 +1,6 @@
-import { forwardRef, ForwardRefRenderFunction } from 'rax';
+import { forwardRef, ForwardRefRenderFunction, PureComponent, RaxNode } from 'rax';
 import View from 'rax-view';
+import Text from 'rax-text';
 import './style.scss';
 
 export interface ComponentProps {
@@ -11,6 +12,11 @@ export interface ComponentProps {
    * 内容
    */
    content: any;
+   /**
+    * 文字尺寸
+    */
+   fontSize: number;
+
 }
 
 /**
@@ -18,20 +24,34 @@ export interface ComponentProps {
  * @param props
  * @constructor
  */
-function ExampleComponent(props: ComponentProps, ref: any) {
-  return (
-    <View ref={ref}>
-      <h1>{props.name}</h1>
-      <span>{props.content}</span>
-    </View>
-  );
+// function ExampleComponent(props: ComponentProps, ref: any) {
+//   return (
+//     <View ref={ref}>
+//       <Text style={{ fontSize: props.fontSize }}>{props.name}</Text>
+//       <Text>{props.content}</Text>
+//       {/* <Text style={props.style}>样式</Text> */}
+//     </View>
+//   );
+// }
+
+export default class ExampleComponent extends PureComponent<ComponentProps> {
+  render(): RaxNode {
+    const props = this.props;
+    return (
+      <View>
+        <Text style={{ fontSize: props.fontSize }}>{props.name}</Text>
+        <Text>{props.content}</Text>
+        {/* <Text style={props.style}>样式</Text> */}
+      </View>
+    );
+  }
 }
 
-const RefComponent = forwardRef(ExampleComponent as ForwardRefRenderFunction<any, ComponentProps>);
+// const RefComponent = forwardRef(ExampleComponent as ForwardRefRenderFunction<any, ComponentProps>);
 
-RefComponent.defaultProps = {
-  name: '标题',
-};
-RefComponent.displayName = 'ExampleComponent';
+// RefComponent.defaultProps = {
+//   name: '标题',
+// };
+// RefComponent.displayName = 'ExampleComponent';
 
-export default RefComponent;
+// export default RefComponent;

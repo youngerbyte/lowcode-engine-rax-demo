@@ -58,17 +58,25 @@
         "destructuring": true,
         "subName": ""
       },
+      "props": [
+        {
+          "name": "name",
+          "setter": "StringSetter"
+        },
+        {
+          "name": "content",
+          "setter": "StringSetter"
+        },
+        {
+          "name": "fontSize",
+          "setter": "NumberSetter"
+        },
+        {
+          "name": "style",
+          "propType": "object"
+        }
+      ],
       "configure": {
-        "props": [
-          {
-            "name": "name",
-            "setter": "StringSetter"
-          },
-          {
-            "name": "content",
-            "setter": "StringSetter"
-          }
-        ]
       },
       "snippets": [
         {
